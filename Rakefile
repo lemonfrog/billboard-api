@@ -6,10 +6,10 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "billboard-api"
     gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
-    gem.email = "marco.ribi@simplificator.com"
-    gem.homepage = "http://github.com/marcoribi/billboard-api"
-    gem.authors = ["marcoribi"]
+    gem.description = %Q{Billboard-API is needed to add the additional models for the billboard application.}
+    gem.email = "info@simplificator.com"
+    gem.homepage = "http://github.com/simplificator/billboard-api"
+    gem.authors = ["simplificator"]
     gem.add_development_dependency "thoughtbot-shoulda"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
