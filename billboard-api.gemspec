@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{billboard-api}
-  s.version = "0.1.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["simplificator"]
@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
      "lib/billboard-api.rb",
      "lib/billboard-api/currency.rb",
      "lib/billboard-api/customer.rb",
-     "lib/billboard-api/order.rb.rb",
+     "lib/billboard-api/order.rb",
      "lib/billboard-api/payment_method.rb",
      "lib/billboard-api/tax.rb",
      "test/billboard-api_test.rb",
