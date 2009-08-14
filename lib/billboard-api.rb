@@ -1,0 +1,5 @@
+require File.join(File.dirname(__FILE__), 'billboard-api', 'order')
+require File.join(File.dirname(__FILE__), 'billboard-api', 'customer')
+require File.join(File.dirname(__FILE__), 'billboard-api', 'payment_method')
+require File.join(File.dirname(__FILE__), 'billboard-api', 'currency')
+require File.join(File.dirname(__FILE__), 'billboard-api', 'tax')
