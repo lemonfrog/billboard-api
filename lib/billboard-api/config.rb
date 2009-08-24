@@ -4,7 +4,7 @@ module BillboardApi
   # Following Settings are required:
   #  * return_after_payment_url
   #  * paypal_service_url
-  #  * billboard_notify_url
+  #  * paypal_notify_url
   #  * paypal_receiver_email
   
   
@@ -31,7 +31,7 @@ module BillboardApi
   class Config
     include Singleton
     
-    REQUIRED_SETTINGS = [:return_after_payment_url, :paypal_service_url, :billboard_notify_url, :paypal_receiver_email]
+    REQUIRED_SETTINGS = [:return_after_payment_url, :paypal_service_url, :paypal_notify_url, :paypal_receiver_email]
     
     # Overwrite site urls since they are directly applied to the 
     # Order class' class variable 'site'

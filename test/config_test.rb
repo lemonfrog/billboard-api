@@ -46,7 +46,7 @@ class ConfigTest < Test::Unit::TestCase
     BillboardApi::Config.configure do |config|
       config.return_after_payment_url= '1'
       config.paypal_service_url= 2
-      config.billboard_notify_url= 3
+      config.paypal_notify_url= 3
       config.paypal_receiver_email= 4
     end
     BillboardApi::Config.instance.validate!
