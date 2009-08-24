@@ -1,6 +1,13 @@
 module BillboardApi
   class Order < ActiveResource::Base
     
+    # Create an URL which can be used to redirect the client to paypal.
+    # It will include information about the order (id), amount, currency and so on.
+    # Some options can be overriden by using the options hash.
+    #  * paypal_notify_url
+    #  * paypal_receiver_email
+    #  * return_after_payment_url
+    # 
     def paypal_url(options = {})
        values = {
          :business => BillboardApi::Config.instance.paypal_receiver_email(options[:paypal_receiver_email]),
@@ -10,7 +17,7 @@ module BillboardApi
          :upload => 1,
          :currency_code => self.currency,
        }
-       values[:notify_url] = BillboardApi::Config.instance.billboard_notify_url(options[:billboard_notify_url])
+       values[:notify_url] = BillboardApi::Config.instance.paypal_notify_url(options[:paypal_notify_url])
 
        self.line_items.each_with_index do |line_item, index|
          values.merge!({
