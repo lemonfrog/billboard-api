@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{billboard-api}
-  s.version = "0.4.0"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["simplificator"]
-  s.date = %q{2009-08-14}
+  s.date = %q{2009-08-25}
   s.description = %q{Billboard-API is needed to add the additional models for the billboard application.}
   s.email = %q{info@simplificator.com}
   s.extra_rdoc_files = [
@@ -25,12 +25,15 @@ Gem::Specification.new do |s|
      "VERSION",
      "billboard-api.gemspec",
      "lib/billboard-api.rb",
+     "lib/billboard-api/config.rb",
      "lib/billboard-api/currency.rb",
      "lib/billboard-api/customer.rb",
+     "lib/billboard-api/default_config.rb",
      "lib/billboard-api/order.rb",
      "lib/billboard-api/payment_method.rb",
      "lib/billboard-api/tax.rb",
      "test/billboard-api_test.rb",
+     "test/config_test.rb",
      "test/test_helper.rb"
   ]
   s.has_rdoc = true
@@ -41,6 +44,7 @@ Gem::Specification.new do |s|
   s.summary = %q{TODO: one-line summary of your gem}
   s.test_files = [
     "test/billboard-api_test.rb",
+     "test/config_test.rb",
      "test/test_helper.rb"
   ]
 
