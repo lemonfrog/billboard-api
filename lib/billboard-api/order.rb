@@ -19,9 +19,9 @@ module BillboardApi
        }
        values[:notify_url] = BillboardApi::Config.instance.paypal_notify_url(options[:paypal_notify_url])
 
-       self.line_items.each_with_index do |line_item, index|
+       self.line_items_attributes.each_with_index do |line_item, index|
          values.merge!({
-           "amount_#{index + 1}" => "%0.2f" % line_item.price.to_f,
+           "amount_#{index + 1}" => "%0.2f" % line_item.price_francs.to_f,
            "item_name_#{index + 1}" => line_item.description,
            "item_number_#{index + 1}" => line_item.id,
            "quantity_#{index + 1}" => line_item.amount
@@ -36,7 +36,7 @@ module BillboardApi
          })
        end
        
-       "#{BillboardApi::Config.instance.paypal_service_url}?{values.to_query}"
+       "#{BillboardApi::Config.instance.paypal_service_url}?#{values.to_query}"
      end
   end
 end
