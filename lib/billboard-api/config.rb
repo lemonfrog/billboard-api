@@ -6,7 +6,7 @@ module BillboardApi
   #  * paypal_service_url
   #  * paypal_notify_url
   #  * paypal_receiver_email
-  
+  #  * site_url
   
   
   #
@@ -31,15 +31,15 @@ module BillboardApi
   class Config
     include Singleton
     
-    REQUIRED_SETTINGS = [:return_after_payment_url, :paypal_service_url, :paypal_notify_url, :paypal_receiver_email]
+    REQUIRED_SETTINGS = [:return_after_payment_url, :paypal_service_url, :paypal_notify_url, :paypal_receiver_email, :site_url]
     
     # Overwrite site urls since they are directly applied to the 
     # Order class' class variable 'site'
-    def order_site_url(override = nil)
-      override || Order.site
+    def site_url(override = nil)
+      override || ActiveResource::Base.site
     end
-    def order_site_url=(value)
-      Order.site= value
+    def site_url=(value)
+      ActiveResource::Base.site= value
     end
         
     # Allow access for arbitrary settings    
@@ -62,7 +62,11 @@ module BillboardApi
       end
     end
  
-    
+    def clear!
+      @settings = {}
+      site_url = nil
+      nil
+    end
     
     # Configure with a block
     # will yield the instance of Config to the block.

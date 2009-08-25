@@ -1,9 +1,10 @@
 require 'test_helper'
 require 'uri'
 class ConfigTest < Test::Unit::TestCase
-  
+  include BillboardApi
   def setup
-    @config = BillboardApi::Config.instance
+    @config = Config.instance
+    @config.clear!
   end
   should "Return nil on unknown config" do
         assert_equal nil, @config.test_property
@@ -27,7 +28,7 @@ class ConfigTest < Test::Unit::TestCase
   
   
   should 'Allow configuration trough block' do
-    BillboardApi::Config.configure do |conf|
+    Config.configure do |conf|
       conf.foobar= 'http://foo.bar'
     end
     assert_equal 'http://foo.bar', @config.foobar
@@ -41,14 +42,21 @@ class ConfigTest < Test::Unit::TestCase
   
   should 'validate! only if all required settings are present' do
     assert_raises RuntimeError do
-      BillboardApi::Config.instance.validate!  
+      Config.instance.validate!  
     end
-    BillboardApi::Config.configure do |config|
+    Config.configure do |config|
       config.return_after_payment_url= '1'
       config.paypal_service_url= 2
       config.paypal_notify_url= 3
       config.paypal_receiver_email= 4
+      config.site_url = 'http://localhost:3000'
     end
-    BillboardApi::Config.instance.validate!
+    Config.instance.validate!
+  end
+  
+  should 'set site_url to Tax and Order' do
+      Config.instance.site_url = 'http://foo.bar.com'
+      assert_equal 'http://foo.bar.com', Order.site.to_s
+      assert_equal 'http://foo.bar.com', Tax.site.to_s
   end
 end
