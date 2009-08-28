@@ -12,7 +12,7 @@ module BillboardApi
        values = {
          :business => BillboardApi::Config.instance.paypal_receiver_email(options[:paypal_receiver_email]),
          :return => BillboardApi::Config.instance.return_after_payment_url(options[:return_after_payment_url]),
-         :invoice => self.id,
+         :invoice => "#{self.business_id}_#{self.id}",
          :cmd => '_cart',
          :upload => 1,
          :currency_code => self.currency,
