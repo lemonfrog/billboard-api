@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{billboard-api}
-  s.version = "0.7.0"
+  s.version = "0.7.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["simplificator"]
-  s.date = %q{2009-08-26}
+  s.date = %q{2009-08-28}
   s.description = %q{Billboard-API is needed to add the additional models for the billboard application.}
   s.email = %q{info@simplificator.com}
   s.extra_rdoc_files = [
