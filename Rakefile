@@ -4,8 +4,8 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "billboard-api"
-    gem.summary = %Q{TODO: one-line summary of your gem}
+    gem.name = "simplificator-billboard-api"
+    gem.summary = %Q{Billboard API gem}
     gem.description = %Q{Billboard-API is needed to add the additional models for the billboard application.}
     gem.email = "info@simplificator.com"
     gem.homepage = "http://github.com/simplificator/billboard-api"
