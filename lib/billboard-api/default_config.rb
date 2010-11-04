@@ -15,6 +15,4 @@ BillboardApi::Config.configure do |config|
   else 
     puts "Not in rails, no defaults set"
   end
-  # default values
-  config.site_url = 'http://billboard.garden.u2.simplificator.com'
 end

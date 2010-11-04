@@ -1,5 +1,5 @@
 module BillboardApi
-  class Order < ActiveResource::Base
+  class Order < RemoteResource
     
     # Create an URL which can be used to redirect the client to paypal.
     # It will include information about the order (id), amount, currency and so on.

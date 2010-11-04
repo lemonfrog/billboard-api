@@ -36,10 +36,10 @@ module BillboardApi
     # Overwrite site urls since they are directly applied to the 
     # Order class' class variable 'site'
     def site_url(override = nil)
-      override || ActiveResource::Base.site
+      override || RemoteResource.site
     end
     def site_url=(value)
-      ActiveResource::Base.site= value
+      RemoteResource.site= value
     end
         
     # Allow access for arbitrary settings    

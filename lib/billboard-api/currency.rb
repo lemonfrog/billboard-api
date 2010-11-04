@@ -1,5 +1,4 @@
 module BillboardApi
-  class Currency < ActiveResource::Base
-#    self.site = "http://billboard.garden.u2.simplificator.com"
+  class Currency < RemoteResource
   end
 end

@@ -1,4 +1,4 @@
 module BillboardApi
-  class Tax < ActiveResource::Base
+  class Tax < RemoteResource
   end
 end
