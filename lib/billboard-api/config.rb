@@ -1,5 +1,5 @@
 module BillboardApi
-  
+
   #
   # Following Settings are required:
   #  * return_after_payment_url
@@ -7,8 +7,8 @@ module BillboardApi
   #  * paypal_notify_url
   #  * paypal_receiver_email
   #  * site_url
-  
-  
+
+
   #
   # Config is a singleton instance which can be used in two ways:
   # Config.instance.setting_name1 = 12
@@ -29,55 +29,83 @@ module BillboardApi
   # or the setting stored in config.
   #
   class Config
-    include Singleton
-    
-    REQUIRED_SETTINGS = [:return_after_payment_url, :paypal_service_url, :paypal_notify_url, :paypal_receiver_email, :site_url]
-    
-    # Overwrite site urls since they are directly applied to the 
-    # Order class' class variable 'site'
-    def site_url(override = nil)
-      override || RemoteResource.site
+    attr_accessor :paypal_service_url
+    attr_reader :url
+
+    def self.production?
+      !(defined? Rails) || Rails.env.production?
     end
-    def site_url=(value)
+
+    def self.default
+      if !defined? @@config
+        @@config = Config.new
+
+        if production?
+          @@config.url = "https://simplebillboard.com"
+          @@config.paypal_service_url = "https://www.paypal.com/cgi-bin/webscr?"
+        else
+          @@config.url = "https://simplebillboard.com.simplificator.com"
+          @@config.paypal_service_url = "https://www.sandbox.paypal.com/cgi-bin/webscr?"
+        end
+        puts "Generated default config"
+      end
+      return @@config
+    end
+
+    # When setting a new URL, also change it for the resources that are already loaded.
+    def url=(value)
       RemoteResource.site= value
     end
-        
-    # Allow access for arbitrary settings    
-    def method_missing(m, *args)
-      if !m.to_s.ends_with?('=') && args.length <= 1
-        # return override or setting
-        args.first || settings[m.to_s]
-      elsif m.to_s.ends_with?('=') && args.length == 1
-        settings[m.to_s[0...-1]] = args.first
-      else
-        super(m, args)
-      end
-    end
-    
-    # Helper method to ensure all settings are present.
-    # Will raise a StandardError if Config is invalid.
-    def validate!
-      REQUIRED_SETTINGS.each do |name|
-        raise "Settings '#{name}' is required. Use 'Config.instance.#{name}= VALUE' to set a value" unless self.send(name) 
-      end
-    end
- 
-    def clear!
-      @settings = {}
-      site_url = nil
-      nil
-    end
-    
-    # Configure with a block
-    # will yield the instance of Config to the block.
-    def self.configure(&block)
-      config = Config.instance
-      yield(instance) if block_given?
-    end
-    
-    private
-    def settings
-      @settings ||= {}
-    end
+
+#    include Singleton
+
+#    REQUIRED_SETTINGS = [:return_after_payment_url, :paypal_service_url, :paypal_receiver_email]
+#
+#    # Overwrite site urls since they are directly applied to the
+#    # Order class' class variable 'site'
+#    def site_url(override = nil)
+#      override || RemoteResource.site
+#    end
+#    def site_url=(value)
+#      RemoteResource.site= value
+#    end
+#
+#    # Allow access for arbitrary settings
+#    def method_missing(m, *args)
+#      if !m.to_s.ends_with?('=') && args.length <= 1
+#        # return override or setting
+#        args.first || settings[m.to_s]
+#      elsif m.to_s.ends_with?('=') && args.length == 1
+#        settings[m.to_s[0...-1]] = args.first
+#      else
+#        super(m, args)
+#      end
+#    end
+#
+#    # Helper method to ensure all settings are present.
+#    # Will raise a StandardError if Config is invalid.
+#    def validate!
+#      REQUIRED_SETTINGS.each do |name|
+#        raise "Settings '#{name}' is required. Use 'Config.instance.#{name}= VALUE' to set a value" unless self.send(name)
+#      end
+#    end
+#
+#    def clear!
+#      @settings = {}
+#      site_url = nil
+#      nil
+#    end
+#
+#    # Configure with a block
+#    # will yield the instance of Config to the block.
+#    def self.configure(&block)
+#      config = Config.instance
+#      yield(instance) if block_given?
+#    end
+#
+#    private
+#    def settings
+#      @settings ||= {}
+#    end
   end
 end
