@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "billboard-api.gemspec",
     "lib/billboard-api.rb",
     "lib/billboard-api/config.rb",
     "lib/billboard-api/currency.rb",
@@ -32,7 +31,6 @@ Gem::Specification.new do |s|
     "lib/billboard-api/queue.rb",
     "lib/billboard-api/remote_resource.rb",
     "lib/billboard-api/tax.rb",
-    "simplificator-billboard-api.gemspec",
     "test/billboard-api_test.rb",
     "test/config_test.rb",
     "test/test_helper.rb"
