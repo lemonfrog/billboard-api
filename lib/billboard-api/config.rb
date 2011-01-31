@@ -57,6 +57,10 @@ module BillboardApi
       RemoteResource.site= value
     end
 
+    def self.instance
+      raise "BillboardApi::Config.instance is deprecated"
+    end
+
 #    include Singleton
 
 #    REQUIRED_SETTINGS = [:return_after_payment_url, :paypal_service_url, :paypal_receiver_email]
