@@ -1,5 +1,5 @@
 require "rubygems"
-require "activeresource"
+require "active_resource"
 require "singleton"
 
 %w[config remote_resource order customer payment_method currency tax].each do |name|
